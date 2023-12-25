@@ -1,5 +1,5 @@
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import Head from "next/head"; // Import the Head component from next/head
+import Head from "next/head";
 import { Inter } from 'next/font/google'
 
 import '../globals.css'
