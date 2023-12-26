@@ -1,10 +1,9 @@
-import { ClerkProvider, OrganizationSwitcher, SignedIn, SignedOut } from "@clerk/nextjs"
+import { OrganizationSwitcher, SignedIn, SignedOut } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 
 function Topbar() {
     return (
-        <ClerkProvider>
     <nav className="topbar">
         <Link href='/' className="flex items-center gap-4">
             <Image src="/logo.svg" alt="logo" width={28} height={28} />
@@ -39,7 +38,6 @@ function Topbar() {
             />
         </div>
     </nav>
-    </ClerkProvider>
     )
 }
 
