@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import * as z from "zod";
-import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod"
+import Image from "next/image"
+import { useForm } from "react-hook-form"
+import { usePathname, useRouter } from "next/navigation"
+import { ChangeEvent, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import {
   Form,
@@ -73,12 +73,12 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       userId: user.id,
       bio: values.bio,
       image: values.profile_photo,
-    });
+    })
 
     if (pathname === "/profile/edit") {
-      router.back();
+      router.back()
     } else {
-      router.push("/");
+      router.push("/")
     }
   };
 
