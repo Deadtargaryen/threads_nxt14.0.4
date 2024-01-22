@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { sidebarLinks } from "../../constants"
+import { sidebarLinks } from "../../components/constants"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 
