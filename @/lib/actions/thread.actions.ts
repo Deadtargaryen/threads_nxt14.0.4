@@ -103,3 +103,40 @@ export async function fetchThreadById(id: string){
         throw new Error(`Error fetching thread: ${error.message}`)
     }
 }
+
+export async function addCommentToThread(
+    threadId: string,
+    commentText: string,
+    userId: string,
+    path: string
+    ) {
+        connectToDB()
+
+        try {
+            //adding a comment(logic)
+            const originalThread = await Thread.findById(threadId)
+
+            if(!originalThread){
+                throw new Error('Thread not Found')
+            }
+            //create new thread with the commentText
+            const commentThread = new Thread({
+                text: commentText,
+                author: userId,
+                parentId: threadId,
+            })
+
+            //save the new(comment) thread to DB
+            const savedCommentThread = await commentThread.save()
+
+            //update the original thread to include the new comment
+            originalThread.children.push(savedCommentThread._id)
+
+            //save the original thread
+            await originalThread.save()
+
+            revalidatePath(path)
+        } catch (error) {
+            throw new Error(`Error adding comment to post: ${error.message}`)
+        }
+    }
