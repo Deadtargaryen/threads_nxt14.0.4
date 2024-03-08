@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { z } from "zod"
-import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { usePathname } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '../../@/components/ui/form'
+} from "../ui/form";
 
-import { Input } from '../../@/components/ui/input'
-import { Button } from '../../@/components/ui/button'
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-import { CommentValidation } from '../../@/lib/validations/thread' 
-import { addCommentToThread } from "../../@/lib/actions/thread.actions"
-
+import { CommentValidation } from "../../lib/validations/thread";
+import { addCommentToThread } from "../../lib/actions/thread.actions";
 
 interface Props {
   threadId: string;
@@ -27,25 +27,25 @@ interface Props {
 }
 
 function Comment({ threadId, currentUserImg, currentUserId }: Props) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const form = useForm<z.infer<typeof CommentValidation>>({
     resolver: zodResolver(CommentValidation),
     defaultValues: {
       thread: "",
     },
-  })
+  });
 
-  const onSubmit = async (values: z.infer<typeof CommentValidation>, event: React.FormEvent) => {
-    event.preventDefault() // Prevent default form submission
+  const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
     await addCommentToThread(
       threadId,
       values.thread,
       JSON.parse(currentUserId),
       pathname
-    )
-    form.reset()
-  }
+    );
+
+    form.reset();
+  };
 
   return (
     <Form {...form}>
@@ -81,7 +81,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
         </Button>
       </form>
     </Form>
-  )
+  );
 }
 
-export default Comment
+export default Comment;
