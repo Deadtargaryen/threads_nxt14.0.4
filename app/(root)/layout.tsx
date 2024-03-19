@@ -13,8 +13,8 @@ import Topbar from "../../components/shared/Topbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Temple Labs | Threads-prototype",
-  description: "Threads-prototype with nxt13",
+  title: "Strings - Join the Conversation",
+  description: "A text-based social application",
 };
 
 export default function RootLayout({
